@@ -64,6 +64,30 @@ nav {
   color: orange;
 }
 
+.national {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #041201 ;
+}
+
+.natContain {
+  text-align: center;
+  border: 10px solid aliceblue;
+  background-color: #094100;
+}
+
+.natImg {
+  height: 300px;
+  width: 500px;
+}
+
+.natTitle {
+  margin-left: 20px;
+}
+
 #login {
   display: flex;
   align-items: center;
@@ -73,4 +97,13 @@ nav {
 
 #title {
   font-size: 50pt;
+}
+
+#search {
+  border: 1px solid black;
+}
+
+#search-content {
+  display: flex;
+  justify-content: space-around;
 }
