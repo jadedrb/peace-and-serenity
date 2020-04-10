@@ -65,6 +65,7 @@ nav {
 }
 
 .national {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,9 +75,29 @@ nav {
 }
 
 .natContain {
+  position: relative;
   text-align: center;
   border: 10px solid aliceblue;
   background-color: #094100;
+  cursor: pointer;
+}
+
+.natContain:hover {
+  border: 10px solid green;
+  opacity: .2;
+}
+
+.natContain:active {
+  border: 10px solid lime;
+  opacity: .2;
+}
+
+.description {
+  font-weight: bold;
+  position: absolute;
+  top: 100px;
+  left: 500px;
+  width: 300px;
 }
 
 .natImg {
@@ -86,6 +107,26 @@ nav {
 
 .natTitle {
   margin-left: 20px;
+}
+
+.moreOne {
+  position: absolute;
+  left: 35px;
+  top: 20px;
+  width: 300px;
+  height: 350px;
+  overflow: auto;
+}
+
+.moreTwo {
+  position: absolute;
+  top: 20px;
+  right: 200px;
+}
+
+.property {
+  color: lime;
+  margin-right: 10px;
 }
 
 #login {
