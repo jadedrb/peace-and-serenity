@@ -21,7 +21,10 @@ class Posts extends Component {
       let updateData = this.context.update
       let newParkId = this.context.newParkId
       let defaultImg = 'https://www.nationalgeographic.com/content/dam/travel/2019-digital/central-park-new-york-city/belvedere-castle.adapt.1900.1.jpg'
-      updateData([newParkId+1, defaultImg], 'addPark')
+      let rGreen = Math.floor(Math.random() * 92)
+      let rBlue = Math.floor(Math.random() * 15)
+      let randomColor = `rgb(0,${rGreen},${rBlue})`
+      updateData([newParkId+1, defaultImg, randomColor], 'addPark')
     }
   }
 

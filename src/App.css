@@ -146,15 +146,19 @@ nav {
   position: relative;
   border: 1px solid black;
   padding: 25px;
+  background-color: #01360D;
 }
 
 .defaultImg {
   position: absolute;
   font-size: 3em;
   color: white;
-  top: 150px;
-  left: 100px;
+  text-align: center;
+  top: 100px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  width: 400px;
+  word-wrap: break-word;
+  overflow: auto;
 }
 
 .removePark {
@@ -164,9 +168,75 @@ nav {
   right: 25px;
 }
 
+.removePark:hover {
+  color: grey;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.removePark:active {
+  color: red;
+}
+
 .nycPark img {
   height: 300px;
   width: 500px;
+}
+
+.nycPark img:hover {
+  opacity: .8;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.imageInput {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  left: 0px;
+}
+
+.imageInput input {
+  width: 200px;
+}
+
+.imageInput label {
+  position: absolute;
+  bottom: 0;
+  color: white;
+}
+
+.labelTwo {
+  left: 230px;
+}
+
+.labelOne {
+  left: -20px;
+}
+
+.categories {
+  position: absolute;
+  top: 20px;
+  left: 550px;
+  color: white;
+}
+
+.yon {
+  margin-left: 20px;
+}
+
+.response {
+  margin-right: 10px;
+  color: grey;
+}
+
+.answer {
+  color: grey;
+}
+
+.answer:hover {
+  color: black;
+  cursor: pointer;
 }
 
 #login {

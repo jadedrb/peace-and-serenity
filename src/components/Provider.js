@@ -6,14 +6,27 @@ class MyProvider extends Component {
   constructor() {
     super()
     this.state = {
-      test: 'this is a test',
       user: '',
       password: '',
       email: '',
       page: 'login',
       nationalParks: [],
       nycParks: {},
-      newParkId: 0
+      newParkId: 0,
+      attributes: [
+        'Would recommend to a friend',
+        'Is a safe space',
+        'Good place to take kids',
+        'Nice area for exercise',
+        'Not too crowded',
+        'Good for recreational sports',
+        'At least one bathroom',
+        'Has benches for sitting',
+        'Has grills',
+        'Has sprinklers',
+        'Pool',
+        'Events',
+      ]
     }
     this.updateData = this.updateData.bind(this)
     this.changePage = this.changePage.bind(this)
@@ -52,9 +65,13 @@ class MyProvider extends Component {
         this.setState({user: u, password: p, email: e})
         break;
       case 'addPark':
-        let [id, img] = data
+        let [id, img, color] = data
         let nycParkAddition = { ...this.state.nycParks }
-        nycParkAddition[id] = { image: img, id: id }
+        let attObj = {}
+        for (let i = 0; i < this.state.attributes.length; i++) attObj[i] = [0,0]
+        console.log(attObj)
+        console.log('^^')
+        nycParkAddition[id] = { image: img, id: id, attributes: attObj, color }
         this.setState(prevState => {
           return {
             newParkId: prevState.newParkId + 1,
@@ -71,6 +88,27 @@ class MyProvider extends Component {
         this.setState(prevState => {
           return {
             nycParks: nycParks
+          }
+        })
+        break;
+      case 'updateProperty':
+        let [pId, prop, value] = data
+        let nyParks = { ...this.state.nycParks }
+        nyParks[pId][prop] = value
+        this.setState(prevState => {
+          return {
+            nycParks: nyParks
+          }
+        })
+        break;
+      case 'vote':
+        let [paId, index, vote] = data
+        let nyPaarks = { ...this.state.nycParks }
+        if (vote === 'yes') nyPaarks[paId]['attributes'][index][0] += 1
+        else nyPaarks[paId]['attributes'][index][1] += 1
+        this.setState(prevState => {
+          return {
+            nycParks: nyPaarks
           }
         })
         break;
