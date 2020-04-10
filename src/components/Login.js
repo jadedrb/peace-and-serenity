@@ -204,7 +204,7 @@ class Login extends Component {
     return (
       <div id="login">
         <p id="title">Peace & Serenity</p>
-        <form onSubmit={onSubmit} name='' style={{backgroundColor: colorF}}>
+        <form id='loginForm' onSubmit={onSubmit} name='' style={{backgroundColor: colorF}}>
           {emailInput}
           <label style={{border: validU}}>
             <p>Username</p>

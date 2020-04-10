@@ -19,6 +19,10 @@ class MyProvider extends Component {
         'Good place to take kids',
         'Nice area for exercise',
         'Not too crowded',
+        'Low noise pollution',
+        'Places to eat',
+        'Clean',
+        'Wide variety of wild life',
         'Good for recreational sports',
         'At least one bathroom',
         'Has benches for sitting',
@@ -71,7 +75,7 @@ class MyProvider extends Component {
         for (let i = 0; i < this.state.attributes.length; i++) attObj[i] = [0,0]
         console.log(attObj)
         console.log('^^')
-        nycParkAddition[id] = { image: img, id: id, attributes: attObj, color }
+        nycParkAddition[id] = { image: img, id: id, attributes: attObj, comments: {}, color }
         this.setState(prevState => {
           return {
             newParkId: prevState.newParkId + 1,

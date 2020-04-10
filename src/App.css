@@ -2,19 +2,6 @@ body {
   font-family: serif;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 500px;
-  border: 1px solid black;
-  padding: 50px;
-  padding-bottom: 70px;
-  margin-bottom: 150px;
-  border-radius: 3%;
-}
-
 input {
   height: 15px;
   width: 25%;
@@ -239,6 +226,57 @@ nav {
   cursor: pointer;
 }
 
+.viewComments {
+  position: absolute;
+  background-color: black;
+  color: grey;
+  text-align: center;
+  border: 1px solid black;
+  height: 15px;
+  width: 100%;
+  left: 0px;
+  font-size: 1em;
+  bottom: 0;
+}
+
+.viewComments:hover {
+  background-color: grey;
+  color: black;
+  cursor: pointer;
+}
+
+.addComment {
+  position: relative;
+  text-align: center;
+  background-color: grey;
+  width: 100%;
+}
+
+.toggleComment {
+  cursor: pointer;
+}
+
+.toggleComment:hover {
+  color: white;
+}
+
+.commentHere {
+  border: 1px solid peachpuff;
+  width: 100%;
+  background-color: aliceblue;
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.commentForm textarea {
+  width: 400px;
+  height: 100px;
+}
+
 #login {
   display: flex;
   align-items: center;
@@ -257,4 +295,17 @@ nav {
 #search-content {
   display: flex;
   justify-content: space-around;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  border: 1px solid black;
+  padding: 50px;
+  padding-bottom: 70px;
+  margin-bottom: 150px;
+  border-radius: 3%;
 }
