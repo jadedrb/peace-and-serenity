@@ -12,7 +12,8 @@ class MyProvider extends Component {
       email: '',
       page: 'login',
       nationalParks: [],
-      nycParks: []
+      nycParks: {},
+      newParkId: 0
     }
     this.updateData = this.updateData.bind(this)
     this.changePage = this.changePage.bind(this)
@@ -29,10 +30,11 @@ class MyProvider extends Component {
     let random = Math.floor(Math.random() * 33) + 1
     let start = '&start=' + random
     let key = '&api_key=qbCUTAx1ES42anbxyZDMcGK9nSIyNODcjOnceAgD'
-
+/*
     fetch(api + state + limit + start + key)
      .then(response => response.json())
      .then(data => this.setState({nationalParks: data.data}))
+*/
   }
 
   changePage(newPage) { this.setState({page: newPage}) }
@@ -43,11 +45,34 @@ class MyProvider extends Component {
   }
 
   updateData(data, type) {
-    console.log('youve reached the update data method')
+    console.log('updateData')
     switch(type) {
       case 'signup':
         let [u, p, e] = data
         this.setState({user: u, password: p, email: e})
+        break;
+      case 'addPark':
+        let [id, img] = data
+        let nycParkAddition = { ...this.state.nycParks }
+        nycParkAddition[id] = { image: img, id: id }
+        this.setState(prevState => {
+          return {
+            newParkId: prevState.newParkId + 1,
+            nycParks: nycParkAddition
+          }
+        })
+        console.log('reached addPark')
+        console.log(this.state)
+        break;
+      case 'deletePark':
+        let [parkId] = data
+        let nycParks = { ...this.state.nycParks }
+        delete nycParks[parkId]
+        this.setState(prevState => {
+          return {
+            nycParks: nycParks
+          }
+        })
         break;
     }
     console.log(this.state)

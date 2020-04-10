@@ -142,6 +142,33 @@ nav {
   color: lime;
 }
 
+.nycPark {
+  position: relative;
+  border: 1px solid black;
+  padding: 25px;
+}
+
+.defaultImg {
+  position: absolute;
+  font-size: 3em;
+  color: white;
+  top: 150px;
+  left: 100px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.removePark {
+  position: absolute;
+  font-size: 2em;
+  top: 25px;
+  right: 25px;
+}
+
+.nycPark img {
+  height: 300px;
+  width: 500px;
+}
+
 #login {
   display: flex;
   align-items: center;
