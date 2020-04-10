@@ -87,7 +87,6 @@ class Login extends Component {
 
     // Check for successful login
     if (statusU && statusP && returningUser) {
-      alert('successful login')
     // Check for successful sign-up
     } else if (statusU && statusP && statusE) {
       let { username, password, userbase } = this.state

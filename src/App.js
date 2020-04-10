@@ -35,7 +35,7 @@ class App extends Component {
               <li><Link className="link" to="/">MY PARKS</Link></li>
               <li><Link className="link" to="/profile">PROFILE</Link></li>
               <li><Link className="link" to="/about">ABOUT</Link></li>
-              <li><Link className="link" to="/login">SIGN OUT</Link></li>
+              <li><Link className="link" to="/login">{page === 'login' ? 'LOG IN' : 'LOG OUT'}</Link></li>
             </ul>
           </nav>
           <Switch>
