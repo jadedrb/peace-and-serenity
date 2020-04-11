@@ -6,13 +6,14 @@ class MyProvider extends Component {
   constructor() {
     super()
     this.state = {
-      user: '',
+      user: 'defaultUser',
       password: '',
       email: '',
       page: 'login',
       nationalParks: [],
       nycParks: {},
       newParkId: 0,
+      newCommentId: 0,
       attributes: [
         'Would recommend to a friend',
         'Is a safe space',
@@ -115,6 +116,19 @@ class MyProvider extends Component {
             nycParks: nyPaarks
           }
         })
+        break;
+      case 'newComment':
+        let [parId, comment] = data
+        let nyPaaarks = { ...this.state.nycParks }
+        let cId = this.state.newCommentId
+        nyPaaarks[parId]['comments'][cId] = { user: this.state.user, votes: 0, date: new Date(), comment }
+        this.setState(prevState => {
+          return {
+            newCommentId: prevState.newCommentId + 1,
+            nycParks: nyPaaarks
+          }
+        })
+        console.log(this.state.newCommentId + ' <-- newCommentId')
         break;
     }
     console.log(this.state)

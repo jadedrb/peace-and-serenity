@@ -26,7 +26,9 @@ class Park extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    
+    let updateData = this.context.update
+    let park = this.props.park.id
+    updateData([park, this.state.comment], 'newComment')
   }
 
   handleMouseOver() { if (!this.state.hover) this.setState({hover: true}) }
@@ -87,6 +89,7 @@ class Park extends Component {
       showAddComment,
       comment } = this.state
     let { attributes, nycParks } = this.context
+    let mapComments = Object.keys(nycParks[id]['comments'])
 
     return (
       <React.Fragment>
@@ -137,6 +140,18 @@ class Park extends Component {
                 <button>Submit</button>
               </form>
             </div>
+            {mapComments.length ? mapComments.map((c,i) => (
+              <div className='commentBody' key={i}>
+                <span className='commentVote'>
+                <span className='voteUpDwn voteUp'>^ </span>
+                {nycParks[id]['comments'][c].votes + ''}
+                <span className='voteUpDwn voteDwn'> v</span>
+                </span>
+                <span className='commentUser'>{nycParks[id]['comments'][c].user}</span>
+                <span className='commentDate'>{nycParks[id]['comments'][c].date.toString().split(' ').slice(0,4).join(' ')}</span>
+                <p className='commentItself'>{nycParks[id]['comments'][c].comment}</p>
+              </div>
+            )) : ''}
           </div>
         </div>
       </React.Fragment>

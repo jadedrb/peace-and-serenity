@@ -277,6 +277,57 @@ nav {
   height: 100px;
 }
 
+.commentBody {
+  position: relative;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.commentVote {
+  position: absolute;
+  top: 40%;
+  right: 20px;
+  font-size: 13pt;
+}
+
+.commentUser {
+  position: absolute;
+  font-size: 15pt;
+  top: 40%;
+  left: 20px;
+}
+
+.commentDate {
+  position: absolute;
+  font-size: 10pt;
+  top: 0;
+  left: 20px;
+}
+
+.voteUpDwn {
+  margin: 10px;
+  font-size: 13pt;
+  color: #AFAFAF;
+  cursor: pointer;
+}
+
+.voteUp:hover {
+  font-weight: bold;
+  color: lime;
+}
+
+.voteDwn:hover {
+  font-weight: bold;
+  color: red;
+}
+
+.commentItself {
+  font-size: 13pt;
+  width: 700px;
+}
+
 #login {
   display: flex;
   align-items: center;
