@@ -130,6 +130,12 @@ class MyProvider extends Component {
         })
         console.log(this.state.newCommentId + ' <-- newCommentId')
         break;
+      case 'voteComment':
+        let [ppId, v, comId] = data
+        let nyPpark = { ...this.state.nycParks }
+        nyPpark[ppId]['comments'][comId]['votes'] += v
+        this.setState({nycParks: nyPpark})
+        break;
     }
     console.log(this.state)
     console.log('^ updated context')

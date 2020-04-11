@@ -38,12 +38,14 @@ class App extends Component {
               <li><Link className="link" to="/login">{page === 'login' ? 'LOG IN' : 'LOG OUT'}</Link></li>
             </ul>
           </nav>
-          <Switch>
-            <Route exact path="/" component={Posts} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/about" component={About} />
-            <Route path="/login" component={Login} />
-          </Switch>
+          <div id='subNavbar'>
+            <Switch>
+              <Route exact path="/" component={Posts} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/about" component={About} />
+              <Route path="/login" component={Login} />
+            </Switch>
+          </div>
         </Router>
       </div>
     )

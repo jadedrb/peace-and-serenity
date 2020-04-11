@@ -50,7 +50,12 @@ class Posts extends Component {
     }
 
     return (
-      <div>
+      <div id='posts'>
+        <div className='logo'>
+          <span className='peace'>Peace</span>
+          <span className='and'>&</span>
+          <span className='serenity'>Serenity</span>
+        </div>
         <div id="search">
           <div id="search-content">
             {parkType === 'city' ? <input/> : ''}

@@ -1,5 +1,6 @@
 body {
   font-family: serif;
+  background-color: lavender;
 }
 
 input {
@@ -35,7 +36,8 @@ ul {
 }
 
 nav {
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  background-image: linear-gradient(to bottom right, #E9FFDE, #5D9B3D);
 }
 
 .link {
@@ -134,6 +136,7 @@ nav {
   border: 1px solid black;
   padding: 25px;
   background-color: #01360D;
+  z-index: 6;
 }
 
 .defaultImg {
@@ -202,9 +205,6 @@ nav {
 }
 
 .categories {
-  position: absolute;
-  top: 20px;
-  left: 550px;
   color: white;
 }
 
@@ -325,7 +325,32 @@ nav {
 
 .commentItself {
   font-size: 13pt;
-  width: 700px;
+  width: 800px;
+  word-wrap: break-word;
+}
+
+.gridParkInfo {
+  display: grid;
+  grid-template: 1fr / 1fr 1fr;
+}
+
+.featuredComment {
+  position: absolute;
+  top: 50px;
+  width: 300px;
+  right: 30px;
+  color: aliceblue;
+}
+
+.featuredComment p {
+  max-height: 200px;
+  word-wrap: break-word;
+  overflow: auto;
+}
+
+.featuredComment h3 {
+  position: absolute;
+  top: -20px;
 }
 
 #login {
@@ -359,4 +384,40 @@ nav {
   padding-bottom: 70px;
   margin-bottom: 150px;
   border-radius: 3%;
+  border: 1px solid yellow;
+}
+
+#subNavbar {
+  background-image: linear-gradient(to bottom right, #E9FFDE, #FFFFFF);
+}
+
+.logo {
+  position: absolute;
+  font-size: 200pt;
+  top: 100px;
+  background-color: lavender;
+  margin-left: 5%;
+}
+
+.peace {
+  position: absolute;
+  left: 180px;
+  top: 90px;
+  color: #80DFC8;
+  z-index: 5;
+}
+
+.and {
+  position: absolute;
+  color: aliceblue;
+  left: 450px;
+  top: 170px;
+  z-index: 4;
+}
+
+.serenity {
+  position: absolute;
+  left: 200px;
+  top: 250px;
+  color: #62B29E;
 }
