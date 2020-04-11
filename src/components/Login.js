@@ -203,7 +203,13 @@ class Login extends Component {
 
     return (
       <div id="login">
-        <p id="title">Peace & Serenity</p>
+        <p id="title">
+          <div className='logo2'>
+            <span className='peace2'>Peace</span>
+            <span className='and2'>&</span>
+            <span className='serenity2'>Serenity</span>
+          </div>
+        </p>
         <form id='loginForm' onSubmit={onSubmit} name='' style={{backgroundColor: colorF}}>
           {emailInput}
           <label style={{border: validU}}>

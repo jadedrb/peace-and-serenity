@@ -353,44 +353,6 @@ nav {
   top: -20px;
 }
 
-#login {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid black;
-}
-
-#title {
-  font-size: 50pt;
-}
-
-#search {
-  border: 1px solid black;
-}
-
-#search-content {
-  display: flex;
-  justify-content: space-around;
-}
-
-#loginForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 500px;
-  border: 1px solid black;
-  padding: 50px;
-  padding-bottom: 70px;
-  margin-bottom: 150px;
-  border-radius: 3%;
-  border: 1px solid yellow;
-}
-
-#subNavbar {
-  background-image: linear-gradient(to bottom right, #E9FFDE, #FFFFFF);
-}
-
 .logo {
   position: absolute;
   font-size: 200pt;
@@ -420,4 +382,69 @@ nav {
   left: 200px;
   top: 250px;
   color: #62B29E;
+}
+
+.logo2 {
+  position: absolute;
+  left: -100px;
+  top: -50px
+}
+
+.peace2 {
+  position: absolute;
+  color: #80DFC8;
+  z-index: 3;
+}
+
+.and2 {
+  position: absolute;
+  top: 20px;
+  left: 66px;
+  color: aliceblue;
+  z-index: 1;
+}
+
+.serenity2 {
+  position: absolute;
+  top: 38px;
+  left: 5px;
+  color: #62B29E;
+}
+
+#login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+#title {
+  position: relative;
+  font-size: 50pt;
+}
+
+#search {
+  border: 1px solid black;
+}
+
+#search-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  border: 1px solid black;
+  padding: 50px;
+  padding-bottom: 70px;
+  margin-bottom: 150px;
+  border-radius: 3%;
+}
+
+#subNavbar {
+  background-image: linear-gradient(to bottom right, #E9FFDE, #FFFFFF);
 }
