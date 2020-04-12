@@ -9,12 +9,15 @@ class Profile extends Component {
   }
 
   render() {
+    let { user, password, email, nycParks } = this.context
+    console.log(this.context)
+    console.log('^context for profile')
     return (
       <div id='profile'>
         <div id='userInfo'>
-          <p className='infoPiece'><span>username</span></p>
-          <p className='infoPiece'><span>password</span></p>
-          <p className='infoPiece'><span>email</span></p>
+          <p className='infoPiece'><span>username</span>{user}</p>
+          <p className='infoPiece'><span>password</span>{password}</p>
+          <p className='infoPiece'><span>email</span>{email}</p>
         </div>
         <div id='favPark'></div>
         <div id='userComments'></div>

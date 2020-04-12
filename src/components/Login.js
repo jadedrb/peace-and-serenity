@@ -16,7 +16,8 @@ class Login extends Component {
       userbase: {},
       emails: {},
       returningUser: true,
-      attempt: false
+      attempt: false,
+      preventRender: false
     }
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -25,7 +26,8 @@ class Login extends Component {
 
   onChange(e) {
     let { value, name } = e.target
-    let { username, password, userbase, returningUser } = this.state
+    let { username, password, returningUser } = this.state
+    let { userbase } = this.context
     let status;
 
     const checkLogin = () => {
@@ -33,7 +35,7 @@ class Login extends Component {
           userbase.hasOwnProperty(value)) {
         status = true;
       } else if (userbase.hasOwnProperty(username) &&
-                 userbase[username] === value) {
+                 userbase[username]['password'] === value) {
         status = true;
       } else if (value !== '') {
         status = false;
@@ -77,6 +79,7 @@ class Login extends Component {
     let {
       username,
       password,
+      email,
       userbase,
       statusU,
       statusP,
@@ -87,32 +90,33 @@ class Login extends Component {
 
     // Check for successful login
     if (statusU && statusP && returningUser) {
+      let updateData = this.context.update
+      updateData([username, password], 'returningUser')
     // Check for successful sign-up
     } else if (statusU && statusP && statusE) {
-      let { username, password, userbase } = this.state
+      let { username, password, userbase, email } = this.state
       e.preventDefault()
 
       if (username === '' || password === '') { return }
       if (userbase.hasOwnProperty(username)) { return }
 
       this.setState(prevState => {
-        prevState.userbase[username] = password
+        prevState.userbase[username] = {}
+        prevState.userbase[username]['comments'] = {}
+        prevState.userbase[username]['password'] = password
+        prevState.userbase[username]['email'] = email
         return { prevState }
       })
       alert('successful signup')
-      console.log(this.state)
     }
     this.setState({attempt: true})
   }
 
   loginSignup(switchTo) {
     if (switchTo === 'signup') {
-      console.log(this.state.username)
       this.setState({returningUser: false, username: '', password: '', email: ''})
-      console.log(this.state)
     } else {
       this.setState({returningUser: true, username: '', password: '', email: ''})
-      console.log(this.state)
     }
   }
 
@@ -123,14 +127,15 @@ class Login extends Component {
     let updateData = this.context.update
     if (statusU && statusP && statusE && attempt) {
       this.setState({attempt: false})
-      updateData([username, password, email], 'signup')
-      this.clearAttempt()
+      updateData([username, password, email, this.state.userbase], 'signup')
     }
-    console.log('unmount')
   }
 
   componentDidUpdate() {
-    let { changePage } = this.props
+
+    let updateData = this.context.update
+    let { page } = this.context
+
     let {
       statusU,
       statusP,
@@ -139,8 +144,23 @@ class Login extends Component {
       email,
       username,
       attempt } = this.state
-    console.log('componentDidUpdate')
-    if (statusU && statusP && statusE && attempt) changePage('whatever')
+
+
+    if (page === 'home') {
+      console.log('is this a logout?')
+      updateData('login', 'login')
+    }
+
+    if (statusU && statusP && statusE && attempt) {
+      updateData('home', 'login')
+      this.setState({statusU: false, statusP: false, statusE: false, attempt: false})
+    }
+
+  }
+
+  componentDidMount() {
+    let { changePage, page } = this.props
+    this.setState({statusU: false, statusP: false, statusE: false, attempt: false})
   }
 
   render() {
@@ -203,13 +223,13 @@ class Login extends Component {
 
     return (
       <div id="login">
-        <p id="title">
-          <div className='logo2'>
+        <div id="title">
+          <p className='logo2'>
             <span className='peace2'>Peace</span>
             <span className='and2'>&</span>
             <span className='serenity2'>Serenity</span>
-          </div>
-        </p>
+          </p>
+        </div>
         <form id='loginForm' onSubmit={onSubmit} name='' style={{backgroundColor: colorF}}>
           {emailInput}
           <label style={{border: validU}}>

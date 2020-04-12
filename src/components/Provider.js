@@ -9,6 +9,8 @@ class MyProvider extends Component {
       user: 'defaultUser',
       password: '',
       email: '',
+      userbase: {},
+      emails: {},
       page: 'login',
       nationalParks: [],
       nycParks: {},
@@ -64,10 +66,17 @@ class MyProvider extends Component {
 
   updateData(data, type) {
     console.log('updateData')
+    console.log(data)
+    console.log(type)
     switch(type) {
       case 'signup':
-        let [u, p, e] = data
-        this.setState({user: u, password: p, email: e})
+        let [u, p, e, userbase] = data
+        console.log(this.state.userbase)
+        console.log('^ Provider userbase')
+        console.log(userbase)
+        console.log('^ Incoming userbase')
+        let newUserbase = {...this.state.userbase, ...userbase}
+        this.setState({user: u, password: p, email: e, userbase: newUserbase})
         break;
       case 'addPark':
         let [id, img, color] = data
@@ -120,11 +129,14 @@ class MyProvider extends Component {
       case 'newComment':
         let [parId, comment] = data
         let nyPaaarks = { ...this.state.nycParks }
+        let newUserbase2 = { ...this.state.userbase }
         let cId = this.state.newCommentId
         nyPaaarks[parId]['comments'][cId] = { user: this.state.user, votes: 0, date: new Date(), comment }
+        newUserbase2[this.state.user]['comments'][cId] = parId
         this.setState(prevState => {
           return {
             newCommentId: prevState.newCommentId + 1,
+            userbase: newUserbase2,
             nycParks: nyPaaarks
           }
         })
@@ -135,6 +147,14 @@ class MyProvider extends Component {
         let nyPpark = { ...this.state.nycParks }
         nyPpark[ppId]['comments'][comId]['votes'] += v
         this.setState({nycParks: nyPpark})
+        break;
+      case 'returningUser':
+        let [us, pa] = data
+        let thisUsersEmail = this.state.userbase[us]['email']
+        this.setState({user: us, password: pa, email: thisUsersEmail, page: 'home'})
+        break;
+      case 'login':
+        this.setState({page: data})
         break;
     }
     console.log(this.state)

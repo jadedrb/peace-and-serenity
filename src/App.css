@@ -387,7 +387,7 @@ nav {
 .logo2 {
   position: absolute;
   left: -100px;
-  top: -50px
+  top: -60px
 }
 
 .peace2 {
@@ -442,9 +442,35 @@ nav {
   padding: 50px;
   padding-bottom: 70px;
   margin-bottom: 150px;
+  margin-top: 140px;
   border-radius: 3%;
 }
 
 #subNavbar {
   background-image: linear-gradient(to bottom right, #E9FFDE, #FFFFFF);
+}
+
+#profile {
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  border: 1px solid yellow;
+}
+
+#userInfo {
+  margin: 50px;
+  font-size: 15pt;
+}
+
+#userInfo span {
+  color: grey;
+  margin-right: 50px;
+}
+
+#favPark {
+  border: 1px solid grey;
+}
+
+#userComments {
+  grid-column: 1 / span 2;
+  border: 1px solid grey;
 }

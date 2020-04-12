@@ -1,31 +1,33 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
+import { MyContext } from './components/Provider';
 import './App.css';
 
 import Login from './components/Login';
 import Posts from './components/Posts';
 import About from './components/About';
 import Profile from './components/Profile';
-import Provider from './components/Provider';
 
 class App extends Component {
+  static contextType = MyContext;
 
   constructor() {
     super()
     this.state = {
-      page: 'not login',
       nav: false
     }
-    this.changePage = this.changePage.bind(this)
     this.toggleNav = this.toggleNav.bind(this)
   }
 
-  changePage(newPage) { this.setState({page: newPage}) }
+  componentDidUpdate() {
+    console.log('App updated.')
+  }
 
   toggleNav() { this.setState({nav: !this.state.nav}) }
 
   render() {
-    let { page } = this.state
+    let { page } = this.context
+    console.log(page)
 
     let login = (
       <div className="navBar">
@@ -43,7 +45,7 @@ class App extends Component {
               <Route exact path="/" component={Posts} />
               <Route path="/profile" component={Profile} />
               <Route path="/about" component={About} />
-              <Route path="/login" component={Login} />
+              <Route exact path="/login" component={Login} />
             </Switch>
           </div>
         </Router>
@@ -51,10 +53,11 @@ class App extends Component {
     )
 
     return (
-      <Provider>
+      <React.Fragment>
         {page !== 'login' ? login : ''}
-        {page === 'login' ? <Login changePage={this.changePage} /> : ''}
-      </Provider>
+        {page !== 'login' ? <Redirect to="/" /> : ''}
+        {page === 'login' ? <div><Login /> <Redirect to="/" /></div> : ''}
+      </React.Fragment>
     );
   }
 }
