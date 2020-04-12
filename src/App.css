@@ -412,21 +412,45 @@ nav {
   color: #62B29E;
 }
 
-.hollowHeart {
+.heart {
   position: absolute;
   top: 15px;
-  right: 10px;
+  left: 10px;
 }
 
-.hollowHeart:hover {
+.heart:hover, .heart2:hover {
   background-color: purple;
+  cursor: pointer;
+}
+
+.heart2 {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+.profileFav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profileFav img {
+  height: 300px;
+  width: 500px;
+}
+
+.profileFav h3 {
+  background-color: black;
+  color: white;
+  width: 500px;
+  height: 100%;
+  margin: 0;
 }
 
 #login {
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid black;
 }
 
 #title {
@@ -478,6 +502,8 @@ nav {
 
 #favPark {
   border: 1px solid grey;
+  background-color: #005A44;
+  overflow: auto;
 }
 
 #userComments {

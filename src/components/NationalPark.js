@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { MyContext } from './Provider';
 
 class NationalPark extends Component {
+  static contextType = MyContext;
+
   constructor(props) {
     super(props)
-    this.state = { hover: false, randomImg: -1, infoState: 0 }
+    this.state = { hover: false, randomImg: -1, infoState: 0, toggleFav: false }
     this.handleMouseOver = this.handleMouseOver.bind(this)
     this.handleMouseLeave = this.handleMouseLeave.bind(this)
     this.handleFavorite = this.handleFavorite.bind(this)
@@ -15,7 +18,16 @@ class NationalPark extends Component {
     if (images.length > 0) this.setState({randomImg: Math.floor(Math.random() * images.length)})
   }
 
-  handleFavorite() { }
+  handleFavorite() {
+    let { images, parkCode, fullName } = this.props.park
+    let updateData = this.context.update
+    let randomImg = this.state.randomImg
+    let user = this.context.user
+    let check = this.context.userbase[user]['favorites'].hasOwnProperty(parkCode)
+    if (check) updateData(parkCode, 'unfavorite')
+    else updateData([parkCode, images[randomImg], fullName], 'favorite')
+    this.setState({toggleFav: !this.state.toggleFav})
+  }
 
   handleMouseOver() { if (!this.state.hover) this.setState({hover: true}) }
 
@@ -34,6 +46,7 @@ class NationalPark extends Component {
   render() {
     let {
       fullName,
+      parkCode,
       images,
       designation,
       description,
@@ -42,9 +55,11 @@ class NationalPark extends Component {
       addresses,
       directionsInfo,
       entranceFees } = this.props.park
-    let { hover, randomImg, infoState } = this.state
+    let { hover, randomImg, infoState, toggleFav } = this.state
+    let { userbase, user } = this.context
     let [ address ] = addresses
     let [ entrance ] = entranceFees
+    let check = userbase[user]['favorites'].hasOwnProperty(parkCode)
 
     if (address === undefined) address = {}
     if (entrance === undefined) entrance = '0'
@@ -54,20 +69,15 @@ class NationalPark extends Component {
     let features = ''
     topics.map((t,i) => features += (i ? ', ' : ' ') + t.name)
 
-    console.log(active)
-    console.log(features)
-    console.log(this.props.park)
-
     let hollowHeart = (
       <svg
         onClick={this.handleFavorite}
-        style={{visibility: hover ? 'visible' : 'hidden'}}
-        className='hollowHeart'
+        className='heart'
         width="24"
         height="24"
         xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
       >
         <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"/>
       </svg>
@@ -76,7 +86,7 @@ class NationalPark extends Component {
     let fullHeart = (
       <svg
         onClick={this.handleFavorite}
-        style={{visibility: hover ? 'visible' : 'hidden'}}
+        className='heart'
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -100,7 +110,7 @@ class NationalPark extends Component {
           <div className='natContain' onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave} onClick={this.moreInfo}>
             <h3 className='natTitle'>{fullName}</h3>
             <img src={images[randomImg] ? images[randomImg].url : 'https://nextcity.org/images/made/Minneapolis_LoringPark_920_568_80.jpg'} className='natImg'/>
-            {hollowHeart}
+            {check ? fullHeart : hollowHeart}
           </div>
           <div className='moreTwo' style={{visibility: infoState > 1 ? 'visible' : 'hidden'}}>
             {address.line1 ? <span className='propertyTwo'>Address</span> : ''}<br/>

@@ -16,6 +16,7 @@ class MyProvider extends Component {
       nycParks: {},
       newParkId: 0,
       newCommentId: 0,
+      defaultImg: 'https://www.nationalgeographic.com/content/dam/travel/2019-digital/central-park-new-york-city/belvedere-castle.adapt.1900.1.jpg',
       attributes: [
         'Would recommend to a friend',
         'Is a safe space',
@@ -28,8 +29,8 @@ class MyProvider extends Component {
         'Wide variety of wild life',
         'Good for recreational sports',
         'At least one bathroom',
-        'Has benches for sitting',
-        'Has grills',
+        'Tables for Sitting',
+        'Barbecue Accessible',
         'Has sprinklers',
         'Pool',
         'Events',
@@ -54,13 +55,13 @@ class MyProvider extends Component {
     fetch(api + state + limit + start + key)
      .then(response => response.json())
      .then(data => this.setState({nationalParks: data.data}))
-
   }
 
   changePage(newPage) { this.setState({page: newPage}) }
 
   componentDidUpdate() {
     console.log(this.state)
+    this.state.nationalParks.map(p => console.log(p.parkCode))
     console.log('^ state in provider')
   }
 
@@ -155,6 +156,20 @@ class MyProvider extends Component {
         break;
       case 'login':
         this.setState({page: data})
+        break;
+      case 'favorite':
+        let [parkCode, img2, parkName] = data
+        let newUserbase3 = {...this.state.userbase}
+        if (parkName === undefined) parkName = 'Default'
+        if (img2 !== undefined && img2.hasOwnProperty('url')) img2 = img2['url']
+        else img2 = this.state.defaultImg
+        newUserbase3[this.state.user]['favorites'][parkCode] = {image: img2, name: parkName}
+        this.setState({userbase: newUserbase3})
+        break;
+      case 'unfavorite':
+        let newUserbase4 = {...this.state.userbase}
+        delete newUserbase4[this.state.user]['favorites'][data]
+        this.setState({userbase: newUserbase4})
         break;
     }
     console.log(this.state)
