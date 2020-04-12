@@ -10,7 +10,7 @@ class Posts extends Component {
   constructor() {
     super()
     this.state = {
-      parkType: 'national'
+      parkType: 'city'
     }
     this.handleClick = this.handleClick.bind(this)
   }

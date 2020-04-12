@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { MyContext } from './Provider';
 
+import Comment from './Comment';
+
 class Park extends Component {
   static contextType = MyContext;
 
@@ -166,16 +168,7 @@ class Park extends Component {
             </div>
             {/* Comment mapping for this park component */}
             {mapComments.length ? mapComments.map((c,i) => (
-              <div className='commentBody' key={i}>
-                <span className='commentVote'>
-                <span className='voteUpDwn voteUp' onClick={() => this.handleVote(1, c)}>^ </span>
-                {nycParks[id]['comments'][c].votes + ''}
-                <span className='voteUpDwn voteDwn' onClick={() => this.handleVote(-1, c)}> v</span>
-                </span>
-                <span className='commentUser'>{nycParks[id]['comments'][c].user}</span>
-                <span className='commentDate'>{nycParks[id]['comments'][c].date.toString().split(' ').slice(0,4).join(' ')}</span>
-                <p className='commentItself'>{nycParks[id]['comments'][c].comment}</p>
-              </div>
+              <Comment key={i} comment={c} id={id} nycParks={nycParks} handleVote={this.handleVote} />
             )) : ''}
           </div>
         </div>

@@ -50,11 +50,11 @@ class MyProvider extends Component {
     let random = Math.floor(Math.random() * 33) + 1
     let start = '&start=' + random
     let key = '&api_key=qbCUTAx1ES42anbxyZDMcGK9nSIyNODcjOnceAgD'
-/*
+
     fetch(api + state + limit + start + key)
      .then(response => response.json())
      .then(data => this.setState({nationalParks: data.data}))
-*/
+
   }
 
   changePage(newPage) { this.setState({page: newPage}) }

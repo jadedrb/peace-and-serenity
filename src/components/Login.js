@@ -103,6 +103,7 @@ class Login extends Component {
       this.setState(prevState => {
         prevState.userbase[username] = {}
         prevState.userbase[username]['comments'] = {}
+        prevState.userbase[username]['favorites'] = {}
         prevState.userbase[username]['password'] = password
         prevState.userbase[username]['email'] = email
         return { prevState }
