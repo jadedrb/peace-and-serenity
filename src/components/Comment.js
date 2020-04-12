@@ -18,6 +18,9 @@ class Comment extends Component {
   render() {
     let c = this.props.comment
     let { nycParks, id, handleVote } = this.props
+    console.log(nycParks)
+    console.log(id)
+    console.log('^^^^^^')
 
     return (
       <div className='commentBody'>
@@ -30,6 +33,7 @@ class Comment extends Component {
         <span className='commentDate'>{nycParks[id]['comments'][c].date.toString().split(' ').slice(0,4).join(' ')}</span>
         <p className='commentItself'>{nycParks[id]['comments'][c].comment}</p>
         <span className='deleteComment' style={{visibility: handleVote === 'disregard' ? 'visible' : 'hidden'}} onClick={this.handleDelete}>X</span>
+        <span className='parkSubject' style={{visibility: handleVote === 'disregard' ? 'visible' : 'hidden'}}>{nycParks[id]['name']}</span>
       </div>
     )
   }

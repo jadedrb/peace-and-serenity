@@ -456,13 +456,22 @@ nav {
 }
 
 .deleteComment {
-  margin-left: 50px;
+  position: absolute;
+  right: 200px;
 }
 
 .deleteComment:hover {
   color: red;
   cursor: pointer;
   font-weight: bold;
+}
+
+.parkSubject {
+  position: absolute;
+  top: 0;
+  left: 200px;
+  font-size: 10pt;
+  color: grey;
 }
 
 #login {

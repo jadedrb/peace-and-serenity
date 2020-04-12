@@ -99,10 +99,18 @@ class MyProvider extends Component {
       case 'deletePark':
         let [parkId] = data
         let nycParks = { ...this.state.nycParks }
+        let newUserbase6 = { ...this.state.userbase }
+        let commentsToDelete = Object.keys(nycParks[parkId]['comments'])
+        {/* Need to delete comments for that park stored in user objects which are in userbase */}
+        commentsToDelete.map(c => {
+          let specificUser = nycParks[parkId]['comments'][c]['user']
+          delete newUserbase6[specificUser]['comments'][c]
+        })
         delete nycParks[parkId]
         this.setState(prevState => {
           return {
-            nycParks: nycParks
+            nycParks: nycParks,
+            userbase: newUserbase6
           }
         })
         break;
