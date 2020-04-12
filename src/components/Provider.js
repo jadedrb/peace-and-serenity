@@ -55,6 +55,7 @@ class MyProvider extends Component {
     fetch(api + state + limit + start + key)
      .then(response => response.json())
      .then(data => this.setState({nationalParks: data.data}))
+     .then(ok => console.log(this.state.nationalParks))
   }
 
   changePage(newPage) { this.setState({page: newPage}) }
@@ -187,6 +188,9 @@ class MyProvider extends Component {
         delete newUserbase5[userr]['comments'][data]
         delete nycParkAddition2[specificPark]['comments'][data]
         this.setState({userbase: newUserbase5, nycParks: nycParkAddition2})
+        break;
+      case 'randomize':
+        this.getNationalParks()
         break;
     }
     console.log(this.state)

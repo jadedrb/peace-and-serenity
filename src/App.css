@@ -474,6 +474,32 @@ nav {
   color: grey;
 }
 
+.randomize {
+  background-color: black;
+  color: green;
+  padding-left: 50px;
+  height: 50px;
+}
+
+.randomize span {
+  position: absolute;
+  border: 1px solid green;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 5px;
+  margin: 10px;
+}
+
+.randomize span:hover {
+  font-weight: bold;
+  color: green;
+}
+
+.randomize span:active {
+  border: 1px solid lime;
+  color: lime;
+}
+
 #login {
   display: flex;
   align-items: center;

@@ -10,9 +10,12 @@ class Posts extends Component {
   constructor() {
     super()
     this.state = {
-      parkType: 'city'
+      parkType: 'city',
+      awaitingFetch: false,
+      checkForChange: ''
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleRandomize = this.handleRandomize.bind(this)
   }
 
   handleClick(type) {
@@ -27,6 +30,21 @@ class Posts extends Component {
       updateData([newParkId+1, defaultImg, randomColor], 'addPark')
     }
   }
+
+  handleRandomize() {
+    let updateData = this.context.update
+    this.setState({awaitingFetch: true})
+    updateData([], 'randomize')
+  }
+
+  componentDidUpdate() {
+    let { checkForChange, awaitingFetch } = this.state
+    let updatedLong = this.context.nationalParks[0].longitude
+    if (checkForChange !== updatedLong) this.setState({awaitingFetch: false, checkForChange: updatedLong})
+    console.log('updating posts')
+  }
+
+  componentDidMount() { this.setState({checkForChange: this.context.nationalParks[0].longitude}) }
 
   render() {
     let { parkType } = this.state
@@ -64,6 +82,7 @@ class Posts extends Component {
             {parkType === 'city' ? <span className='parkB' onClick={() => this.handleClick('add')}>Add Park</span> : ''}
           </div>
         </div>
+        {parkType === 'national' ? <div className='randomize' style={{backgroundColor: this.state.awaitingFetch ? 'lime' : 'black'}}><span onClick={this.handleRandomize}>Find new national parks</span></div> : ''}
         {parkType === 'national' ? natParks : cityParks}
       </div>
     )
