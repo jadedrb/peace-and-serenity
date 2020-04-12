@@ -171,6 +171,15 @@ class MyProvider extends Component {
         delete newUserbase4[this.state.user]['favorites'][data]
         this.setState({userbase: newUserbase4})
         break;
+      case 'deleteComment':
+        let newUserbase5 = {...this.state.userbase}
+        let nycParkAddition2 = {...this.state.nycParks}
+        let userr = this.state.user
+        let specificPark = newUserbase5[userr]['comments'][data]
+        delete newUserbase5[userr]['comments'][data]
+        delete nycParkAddition2[specificPark]['comments'][data]
+        this.setState({userbase: newUserbase5, nycParks: nycParkAddition2})
+        break;
     }
     console.log(this.state)
     console.log('^ updated context')

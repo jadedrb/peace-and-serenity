@@ -6,7 +6,7 @@ class NationalPark extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { hover: false, randomImg: -1, infoState: 0, toggleFav: false }
+    this.state = { hover: false, randomImg: -1, infoState: 0 }
     this.handleMouseOver = this.handleMouseOver.bind(this)
     this.handleMouseLeave = this.handleMouseLeave.bind(this)
     this.handleFavorite = this.handleFavorite.bind(this)
@@ -26,7 +26,6 @@ class NationalPark extends Component {
     let check = this.context.userbase[user]['favorites'].hasOwnProperty(parkCode)
     if (check) updateData(parkCode, 'unfavorite')
     else updateData([parkCode, images[randomImg], fullName], 'favorite')
-    this.setState({toggleFav: !this.state.toggleFav})
   }
 
   handleMouseOver() { if (!this.state.hover) this.setState({hover: true}) }
