@@ -98,6 +98,9 @@ nav {
 
 .natTitle {
   margin-left: 20px;
+  width: 480px;
+  white-space: nowrap;
+  overflow-x: scroll;
 }
 
 .moreOne {
