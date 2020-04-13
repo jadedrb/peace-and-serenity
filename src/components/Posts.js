@@ -34,7 +34,6 @@ class Posts extends Component {
       if (name && searched === name.slice(0, searched.length)) return true
     }
     else {
-      alert('sick')
       return true
     }
   }
