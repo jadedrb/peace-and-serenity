@@ -19,7 +19,7 @@ class App extends Component {
     this.toggleNav = this.toggleNav.bind(this)
   }
 
-  componentDidMount() { console.log('v1.00') }
+  componentDidMount() { console.log('v1.01') }
 
   toggleNav() { this.setState({nav: !this.state.nav}) }
 
