@@ -415,6 +415,34 @@ nav {
   color: #62B29E;
 }
 
+.logo3 {
+  position: absolute;
+  font-size: 50pt;
+  width: 200px;
+}
+
+.peace3 {
+  position: absolute;
+  color: #80DFC8;
+  left: 5px;
+  z-index: 3;
+}
+
+.and3 {
+  position: absolute;
+  left: 65px;
+  top: 23px;
+  color: aliceblue;
+  z-index: 1;
+}
+
+.serenity3 {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  color: #62B29E;
+}
+
 .heart {
   position: absolute;
   top: 15px;
@@ -503,10 +531,84 @@ nav {
   color: lime;
 }
 
+#logoContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  width: 100%;
+}
+
+#credit {
+  background-color: lavender;
+  letter-spacing: 5px;
+  line-height: 25px;
+  font-family: sans-serif;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+#about h1 {
+  background-color: #C2E9DF;
+  border-radius: 10px;
+  width: 500px;
+  margin-top: 150px;
+}
+
+#about p {
+  line-height: 30px;
+  letter-spacing: 2px;
+  border-radius: 20px;
+  background-color: #EDFEFA;
+  padding: 50px;
+  width: 500px;
+}
+
+#about h3 {
+  color: grey;
+  opacity: .5;
+}
+
+footer {
+  color: black;
+}
+
+#about {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  background-color: #1c4226;
+}
+
+#about-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  align-items: center;
+}
+
 #login {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-image: url("https://files.slack.com/files-pri/T9KJM7QJX-F011PU5PL21/p_s_pic.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+}
+
+#login footer {
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  width: 100%;
+  background-color: black;
 }
 
 #title {

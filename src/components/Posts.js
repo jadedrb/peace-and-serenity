@@ -44,7 +44,7 @@ class Posts extends Component {
     console.log('updating posts')
   }
 
-  componentDidMount() { this.setState({checkForChange: this.context.nationalParks[0].longitude}) }
+  componentDidMount() { this.setState({checkForChange: this.context.nationalParks[0] ? 'placeholder' : this.context.nationalParks[0].longitude}) }
 
   render() {
     let { parkType } = this.state

@@ -251,6 +251,7 @@ class Login extends Component {
           </div>
         )}
         </MyContext.Consumer>
+        <footer style={{display: returningUser ? 'block' : 'none'}}></footer>
       </div>
     )
   }
