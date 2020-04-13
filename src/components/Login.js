@@ -26,7 +26,7 @@ class Login extends Component {
 
   onChange(e) {
     let { value, name } = e.target
-    let { username, password, returningUser } = this.state
+    let { username, returningUser } = this.state
     let { userbase } = this.context
     let status;
 
@@ -79,8 +79,6 @@ class Login extends Component {
     let {
       username,
       password,
-      email,
-      userbase,
       statusU,
       statusP,
       statusE,
@@ -142,9 +140,6 @@ class Login extends Component {
       statusU,
       statusP,
       statusE,
-      password,
-      email,
-      username,
       attempt } = this.state
 
 
@@ -161,14 +156,12 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    let { changePage, page } = this.props
     document.getElementById('body').style.backgroundColor = 'black'
     this.setState({statusU: false, statusP: false, statusE: false, attempt: false})
   }
 
   render() {
-    let { changePage } = this.props
-    let { onChange, onSubmit, loginSignup, clearAttempt } = this
+    let { onChange, onSubmit } = this
     let {
       statusU,
       statusP,

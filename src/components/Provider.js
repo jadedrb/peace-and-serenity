@@ -102,11 +102,12 @@ class MyProvider extends Component {
         let nycParks = { ...this.state.nycParks }
         let newUserbase6 = { ...this.state.userbase }
         let commentsToDelete = Object.keys(nycParks[parkId]['comments'])
-        {/* Need to delete comments for that park stored in user objects which are in userbase */}
-        commentsToDelete.map(c => {
+
+        for (let c of commentsToDelete) {
           let specificUser = nycParks[parkId]['comments'][c]['user']
           delete newUserbase6[specificUser]['comments'][c]
-        })
+        }
+        
         delete nycParks[parkId]
         this.setState(prevState => {
           return {
@@ -192,6 +193,7 @@ class MyProvider extends Component {
       case 'randomize':
         this.getNationalParks()
         break;
+      default:
     }
     console.log(this.state)
     console.log('^ updated context')

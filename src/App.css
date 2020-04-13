@@ -637,6 +637,7 @@ footer {
   margin-bottom: 150px;
   margin-top: 140px;
   border-radius: 3%;
+  opacity: .8;
 }
 
 #subNavbar {

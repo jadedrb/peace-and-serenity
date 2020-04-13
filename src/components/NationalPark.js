@@ -57,7 +57,7 @@ class NationalPark extends Component {
       addresses,
       directionsInfo,
       entranceFees } = this.props.park
-    let { hover, randomImg, infoState, toggleFav } = this.state
+    let { hover, randomImg, infoState } = this.state
     let { userbase, user } = this.context
     let [ address ] = addresses
     let [ entrance ] = entranceFees
@@ -111,7 +111,7 @@ class NationalPark extends Component {
           </div>
           <div className='natContain' onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave} onClick={this.moreInfo}>
             <h3 className='natTitle'>{fullName}</h3>
-            <img src={images[randomImg] ? images[randomImg].url : 'https://afar-production.imgix.net/uploads/images/afar_post_headers/images/g478vQR3So/original_ApinBen465_hutterstock_1406757632.jpg?auto=compress,format,enhance&fit=crop&crop=top&lossless=true&w=1080&dpr=2'} onError={this.addDefaultSrc} className='natImg'/>
+            <img alt='National Park' src={images[randomImg] ? images[randomImg].url : 'https://afar-production.imgix.net/uploads/images/afar_post_headers/images/g478vQR3So/original_ApinBen465_hutterstock_1406757632.jpg?auto=compress,format,enhance&fit=crop&crop=top&lossless=true&w=1080&dpr=2'} onError={this.addDefaultSrc} className='natImg'/>
             {check ? fullHeart : hollowHeart}
           </div>
           <div className='moreTwo' style={{visibility: infoState > 1 ? 'visible' : 'hidden'}}>

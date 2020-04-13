@@ -38,7 +38,7 @@ class Posts extends Component {
   }
 
   componentDidUpdate() {
-    let { checkForChange, awaitingFetch } = this.state
+    let { checkForChange } = this.state
     let updatedLong = this.context.nationalParks[0].longitude
     if (checkForChange !== updatedLong) this.setState({awaitingFetch: false, checkForChange: updatedLong})
     console.log('updating posts')
@@ -82,7 +82,7 @@ class Posts extends Component {
             {parkType === 'city' ? <span className='parkB' onClick={() => this.handleClick('add')}>Add Park</span> : ''}
           </div>
         </div>
-        {parkType === 'national' ? <div className='randomize' style={{backgroundColor: this.state.awaitingFetch ? 'lime' : 'black'}}><span onClick={this.handleRandomize}>Find new national parks</span></div> : ''}
+        {parkType === 'national' ? <div className='randomize' style={{backgroundColor: this.state.awaitingFetch ? 'lime' : 'black'}}><span onClick={this.handleRandomize}>Find national parks</span></div> : ''}
         {parkType === 'national' ? natParks : cityParks}
       </div>
     )

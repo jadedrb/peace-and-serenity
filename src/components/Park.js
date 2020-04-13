@@ -48,7 +48,6 @@ class Park extends Component {
       hover,
       showCategories,
       showYesOrNo,
-      showComments,
       showAddComment } = this.state
     console.log(item + ' <-item')
     if (item === 'image' && !showImageInput) this.setState({showImageInput: !showImageInput})
@@ -145,7 +144,7 @@ class Park extends Component {
         >
           {/* Clickable image. Inputs appear for giving a Park Name and URL */}
           <div className='gridParkInfo'>
-            <img src={image} onClick={() => this.handleClick('image')} />
+            <img alt='City Park' src={image} onClick={() => this.handleClick('image')} />
             {check ? fullHeart : hollowHeart}
             <div
               className='imageInput'
