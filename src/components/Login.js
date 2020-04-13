@@ -130,6 +130,7 @@ class Login extends Component {
       this.setState({attempt: false})
       updateData([username, password, email, this.state.userbase], 'signup')
     }
+    document.getElementById('body').style.backgroundColor = 'lavender'
   }
 
   componentDidUpdate() {
@@ -161,6 +162,7 @@ class Login extends Component {
 
   componentDidMount() {
     let { changePage, page } = this.props
+    document.getElementById('body').style.backgroundColor = 'black'
     this.setState({statusU: false, statusP: false, statusE: false, attempt: false})
   }
 
@@ -251,7 +253,7 @@ class Login extends Component {
           </div>
         )}
         </MyContext.Consumer>
-        <footer style={{display: returningUser ? 'block' : 'none'}}></footer>
+
       </div>
     )
   }

@@ -1,6 +1,6 @@
 body {
   font-family: serif;
-  background-color: lavender;
+  background-color: black;
 }
 
 input {
@@ -598,9 +598,9 @@ footer {
   align-items: center;
   flex-direction: column;
   background-image: url("https://files.slack.com/files-pri/T9KJM7QJX-F011PU5PL21/p_s_pic.jpg");
-  background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
+  height: 100%;
 }
 
 #login footer {
