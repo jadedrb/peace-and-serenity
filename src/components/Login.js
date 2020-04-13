@@ -106,7 +106,6 @@ class Login extends Component {
         prevState.userbase[username]['email'] = email
         return { prevState }
       })
-      alert('successful signup')
     }
     this.setState({attempt: true})
   }

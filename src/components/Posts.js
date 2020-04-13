@@ -12,10 +12,31 @@ class Posts extends Component {
     this.state = {
       parkType: 'city',
       awaitingFetch: false,
-      checkForChange: ''
+      checkForChange: '',
+      search: ''
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleRandomize = this.handleRandomize.bind(this)
+    this.searchCriteria = this.searchCriteria.bind(this)
+  }
+
+  handleChange(e) { this.setState({search: e.target.value}) }
+
+  searchCriteria(park) {
+    let { search } = this.state
+    if (!search) return true
+    let searched = search.toLowerCase()
+    let name;
+    if (searched[0] !== '#') {
+      if (park.hasOwnProperty('name')) name = park.name.toLowerCase()
+      if (searched === name) return true
+      if (name && searched === name.slice(0, searched.length)) return true
+    }
+    else {
+      alert('sick')
+      return true
+    }
   }
 
   handleClick(type) {
@@ -27,6 +48,7 @@ class Posts extends Component {
       let rGreen = Math.floor(Math.random() * 92)
       let rBlue = Math.floor(Math.random() * 15)
       let randomColor = `rgb(0,${rGreen},${rBlue})`
+      this.setState({search: ''})
       updateData([newParkId+1, defaultImg, randomColor], 'addPark')
     }
   }
@@ -47,8 +69,9 @@ class Posts extends Component {
   componentDidMount() { this.setState({checkForChange: this.context.nationalParks[0] ? 'placeholder' : this.context.nationalParks[0].longitude}) }
 
   render() {
-    let { parkType } = this.state
+    let { parkType, search } = this.state
     let { nationalParks, nycParks } = this.context
+    let { searchCriteria, handleChange, handleRandomize } = this
     let natParks, cityParks;
 
     if (parkType === 'national') {
@@ -62,7 +85,7 @@ class Posts extends Component {
       let nycParkIdKeys = Object.keys(nycParks)
       cityParks = (
         <div>
-          {nycParkIdKeys.map((id,i) => <Park key={i} park={nycParks[id]}/>)}
+          {nycParkIdKeys.map((id,i) => searchCriteria(nycParks[id]) ? <Park key={i} park={nycParks[id]}/>  : '')}
         </div>
       )
     }
@@ -76,7 +99,7 @@ class Posts extends Component {
         </div>
         <div id="search">
           <div id="search-content">
-            {parkType === 'city' ? <input/> : ''}
+            {parkType === 'city' ? <input onChange={handleChange} value={search}/> : ''}
             <span className='parkB' onClick={() => this.handleClick('national')}>National Parks</span>
             <span className='parkB' onClick={() => this.handleClick('city')}>NYC Parks</span>
             {parkType === 'city' ? <span className='parkB' onClick={() => this.handleClick('add')}>Add Park</span> : ''}
